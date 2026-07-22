@@ -35,7 +35,7 @@ function AppInner() {
               marginRight: '8px',
             }}
           >
-            Upgrade to Pro
+            Unlock Studio Pass
           </button>
         )}
         <button onClick={toggleTheme} style={styles.themeBtn} aria-label="Toggle theme">
