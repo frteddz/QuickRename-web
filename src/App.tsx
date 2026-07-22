@@ -2,16 +2,42 @@ import { useState } from 'react';
 import { HomePage } from './pages/HomePage';
 import { RenamePage } from './pages/RenamePage';
 import { useTheme } from './hooks/useTheme';
+import { LicenseProvider, useLicense } from './licensing/LicenseProvider';
+import { AnimatedBackground } from './components/AnimatedBackground';
 
 type Page = 'home' | 'rename';
 
 export default function App() {
+  return <LicenseProvider productKey="QuickRename"><AppInner /></LicenseProvider>;
+}
+
+function AppInner() {
   const [page, setPage] = useState<Page>('home');
   const { theme, toggleTheme } = useTheme();
+  const { isPro, setShowProModal } = useLicense();
 
   return (
-    <div style={styles.app}>
+    <>
+      <AnimatedBackground />
+      <div style={{ ...styles.app, position: 'relative', zIndex: 1 }}>
       <div style={styles.topBar}>
+        {!isPro && (
+          <button
+            onClick={() => setShowProModal(true)}
+            style={{
+              ...styles.themeBtn,
+              background: 'var(--color-primary)',
+              color: '#fff',
+              fontWeight: 600,
+              fontSize: '0.8rem',
+              width: 'auto',
+              padding: '0 12px',
+              marginRight: '8px',
+            }}
+          >
+            Upgrade to Pro
+          </button>
+        )}
         <button onClick={toggleTheme} style={styles.themeBtn} aria-label="Toggle theme">
           {theme === 'dark' ? (
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -38,6 +64,7 @@ export default function App() {
         <RenamePage onBack={() => setPage('home')} />
       )}
     </div>
+    </>
   );
 }
 
