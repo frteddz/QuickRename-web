@@ -63,6 +63,9 @@ function AppInner() {
       ) : (
         <RenamePage onBack={() => setPage('home')} />
       )}
+      <div style={{ textAlign: 'center', padding: '12px', fontSize: '0.65rem', color: 'var(--color-text-tertiary)', borderTop: '1px solid var(--color-border)', marginTop: 'auto' }}>
+        Made by <a href="https://frteddz.github.io/Euthenia-Studio-Website/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-accent)', fontWeight: 600, textDecoration: 'none' }}>Euthenia Studio</a>
+      </div>
     </div>
     </>
   );
