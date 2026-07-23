@@ -2,6 +2,8 @@
 
 > Bulk file renamer — rename dozens of files in seconds with powerful patterns.
 
+This repository contains only the built distribution files. The source code is not publicly available.
+
 ## Features
 
 - Add prefixes and suffixes to file names
